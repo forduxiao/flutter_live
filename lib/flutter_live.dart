@@ -108,54 +108,54 @@ class RealtimePlayer {
 /// is parsed as a WebRTCUri:
 ///   api: http://d.ossrs.net:11985/rtc/v1/play/
 ///   streamUrl: "webrtc://d.ossrs.net:11985/live/livestream"
-class WebRTCUri {
-  /// The api server url for WebRTC streaming.
-  String api;
-  /// The stream url to play or publish.
-  String streamUrl;
-
-  /// Parse the url to WebRTC uri.
-  static WebRTCUri parse(String url) {
-    Uri uri = Uri.parse(url);
-
-    var schema = 'https'; // For native, default to HTTPS
-    if (uri.queryParameters.containsKey('schema')) {
-      schema = uri.queryParameters['schema'];
-    } else {
-      schema = 'https';
-    }
-
-    var port = (uri.port > 0)? uri.port : 443;
-    if (schema == 'https') {
-      port = (uri.port > 0)? uri.port : 443;
-    } else if (schema == 'http') {
-      port = (uri.port > 0)? uri.port : 1985;
-    }
-
-    var api = '/rtc/v1/play/';
-    if (uri.queryParameters.containsKey('play')) {
-      api = uri.queryParameters['play'];
-    }
-
-    var apiParams = [];
-    for (var key in uri.queryParameters.keys) {
-      if (key != 'api' && key != 'play' && key != 'schema') {
-        apiParams.add('${key}=${uri.queryParameters[key]}');
-      }
-    }
-
-    var apiUrl = '${schema}://${uri.host}:${port}${api}';
-    if (!apiParams.isEmpty) {
-      apiUrl += '?' + apiParams.join('&');
-    }
-
-    WebRTCUri r = WebRTCUri();
-    r.api = apiUrl;
-    r.streamUrl = url;
-    print('Url ${url} parsed to api=${r.api}, stream=${r.streamUrl}');
-    return r;
-  }
-}
+// class WebRTCUri {
+//   /// The api server url for WebRTC streaming.
+//   String api;
+//   /// The stream url to play or publish.
+//   String streamUrl;
+//
+//   /// Parse the url to WebRTC uri.
+//   static WebRTCUri parse(String url) {
+//     Uri uri = Uri.parse(url);
+//
+//     var schema = 'https'; // For native, default to HTTPS
+//     if (uri.queryParameters.containsKey('schema')) {
+//       schema = uri.queryParameters['schema'];
+//     } else {
+//       schema = 'https';
+//     }
+//
+//     var port = (uri.port > 0)? uri.port : 443;
+//     if (schema == 'https') {
+//       port = (uri.port > 0)? uri.port : 443;
+//     } else if (schema == 'http') {
+//       port = (uri.port > 0)? uri.port : 1985;
+//     }
+//
+//     var api = '/rtc/v1/play/';
+//     if (uri.queryParameters.containsKey('play')) {
+//       api = uri.queryParameters['play'];
+//     }
+//
+//     var apiParams = [];
+//     for (var key in uri.queryParameters.keys) {
+//       if (key != 'api' && key != 'play' && key != 'schema') {
+//         apiParams.add('${key}=${uri.queryParameters[key]}');
+//       }
+//     }
+//
+//     var apiUrl = '${schema}://${uri.host}:${port}${api}';
+//     if (!apiParams.isEmpty) {
+//       apiUrl += '?' + apiParams.join('&');
+//     }
+//
+//     WebRTCUri r = WebRTCUri();
+//     r.api = apiUrl;
+//     r.streamUrl = url;
+//     print('Url ${url} parsed to api=${r.api}, stream=${r.streamUrl}');
+//     return r;
+//   }
+// }
 
 /// A WebRTC player, using [flutter_webrtc](https://pub.dev/packages/flutter_webrtc)
 // class WebRTCPlayer {
