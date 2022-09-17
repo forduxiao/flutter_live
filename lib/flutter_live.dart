@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:fijkplayer/fijkplayer.dart' as fijkplayer;
@@ -93,6 +94,9 @@ class RealtimePlayer {
     await _player.setOption(fijkplayer.FijkOption.playerCategory, "min-frames", 1); // in frames
 
 
+    ///add by duxiao
+    await _player.setOption(fijkplayer.FijkOption.hostCategory, "enable-snapshot", 1);
+
     await _player.setDataSource(url, autoPlay: true).catchError((e) {
       print("setDataSource error: $e");
     });
@@ -101,6 +105,14 @@ class RealtimePlayer {
   /// Dispose the player.
   void dispose() {
     _player.release();
+  }
+
+  /// Take snapshot (screen shot) of current playing video
+  ///
+  /// If you want to use [takeSnapshot], you must call
+  /// `player.setOption(FijkOption.hostCategory, "enable-snapshot", 1);`
+  Future<Uint8List> takeSnapShot() {
+    return _player.takeSnapShot();
   }
 }
 
