@@ -92,6 +92,7 @@ class RealtimePlayer {
     await _player.setOption(fijkplayer.FijkOption.playerCategory, "infbuf", 1); // 1 for realtime.
     await _player.setOption(fijkplayer.FijkOption.playerCategory, "min-frames", 1); // in frames
 
+
     await _player.setDataSource(url, autoPlay: true).catchError((e) {
       print("setDataSource error: $e");
     });
