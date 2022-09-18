@@ -111,8 +111,8 @@ class RealtimePlayer {
   ///
   /// If you want to use [takeSnapshot], you must call
   /// `player.setOption(FijkOption.hostCategory, "enable-snapshot", 1);`
-  Future<Uint8List> takeSnapShot() {
-    return _player.takeSnapShot();
+  Future<Uint8List> takeSnapShot() async {
+    return await _player.takeSnapShot();
   }
 }
 
