@@ -13,8 +13,8 @@ dependencies:
     sdk: flutter
 #  fijkplayer: ^0.8.8
 #  fijkplayer: ^0.10.1
-  fijkplayer: ^0.11.0
-#    fijkplayer: ^0.11.0
+#  fijkplayer: ^0.11.0
+  fplayer: ^1.1.3
 #  flutter_webrtc: ^0.6.3
 #  camera_with_rtmp: ^0.3.2
 
